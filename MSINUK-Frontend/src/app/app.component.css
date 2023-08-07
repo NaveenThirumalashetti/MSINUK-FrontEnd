@@ -5,6 +5,9 @@
 .navbar-nav{
     align-items: center;
 }
+.nav-link{
+    font-weight: 600;
+}
 .login{
     margin-left: 240%;
     font-weight: 700;

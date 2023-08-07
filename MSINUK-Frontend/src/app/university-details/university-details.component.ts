@@ -48,7 +48,7 @@ export class UniversityDetailsComponent implements AfterViewInit {
                 this.courseObj = JSON.parse(this.universityDetails.courseMap);
                 this.getUser();
               });
-        }    
+        }
     }
     getUser(){
       this.subscription = this.userService.currentUser.subscribe(user => {
@@ -72,7 +72,7 @@ export class UniversityDetailsComponent implements AfterViewInit {
       this.courseMap = filteredMap;
     } 
     addToWishlist(){
-       if(this.user.wishlist.indexOf(this.universityDetails.id)<0){
+       if(this.user.wishlist.indexOf(this.universityDetails.id)<0) {
         this.user.wishlist.push(this.universityDetails.id);
           this.userService.updateUser(this.user).subscribe((data:any)=>{
             if(data.status){
@@ -82,7 +82,6 @@ export class UniversityDetailsComponent implements AfterViewInit {
               this.userService.changeUser(this.user);
             }
           });
-          console.log(this.user);
        }
     }
     updateLastVisited(){
@@ -100,8 +99,7 @@ export class UniversityDetailsComponent implements AfterViewInit {
       const index = this.user.wishlist.indexOf(this.universityDetails.id);
       if (index > -1) { 
         this.user.wishlist.splice(index, 1);
-      }
-        this.userService.addUser(this.user).subscribe((data:any)=>{
+        this.userService.updateUser(this.user).subscribe((data:any)=>{
           if(data.status){
             console.log(data);
             this.isBookmark=false;
@@ -109,6 +107,7 @@ export class UniversityDetailsComponent implements AfterViewInit {
             this.userService.changeUser(this.user);
           }
         });
+      }
     }
     collapse(event:any){
       console.log(event.target.nextSibling);
